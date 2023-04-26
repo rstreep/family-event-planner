@@ -1,0 +1,25 @@
+
+
+
+
+/* Create circles menu */
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0px 35px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+  
+  /* Mark the active step: */
+.step.active {
+    opacity: 1;
+  }
+  
+  /* Mark the steps that are finished and valid: */
+  .step.finish {
+    background-color: #04AA6D;
+  }
