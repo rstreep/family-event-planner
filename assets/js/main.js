@@ -140,3 +140,17 @@ $(document).ready(function () {
         sendClicked();
     });
 });
+
+// fetch function to grab data from edamam API
+// Rich API ID - e0e48aa8
+// Rich API Key - 5ecc0a6a74140b8afe687fc73be0ddb2	—
+
+fetch ('insert api here')
+.then(function (response) {
+    return response.json();
+})
+.then(function(data) {
+    console.log(data);
+})
+
+
