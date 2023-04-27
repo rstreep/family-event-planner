@@ -128,7 +128,7 @@ function saveClicked() {
 function sendClicked() {
     // Define what should happen when the Send button is clicked
     console.log('Send button clicked! 0 ');
-    ///////////////////////////////////////////////////////////////
+    // ////////////////// POC of mailTo    /////////////////////////////////////////////
     // Define the event object with details
     var event = {
         name: "Family Reunion",
@@ -155,7 +155,8 @@ function sendClicked() {
     // Open the mailto dialog box
     window.location.href = mailtoUrl;
 
-    ///////////////////////////////////////////////////////////////
+   
+    /////////////////////////////////////////////////////////////////
     //ToDo  - save final objects to local storage
     //ToDo - open MailTo dialog with pre-populated data 
     //ToDo - navigate to the firsr page
