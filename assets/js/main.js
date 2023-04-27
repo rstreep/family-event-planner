@@ -29,6 +29,7 @@ eventObg = {
     eventName: "Family Reunion",
     eventDate: "Thu May 4th, 2023, 7pm est",
     eventLocation: "The Franklin Institute, Center City, Address: 222 N 20th Street, Philadelphia, PA 19103",
+    weather: {},
     isOutside: false,
     diet: ['vegan', 'peanut-free', 'spicy-hot'],
     menuItems: [
@@ -99,10 +100,14 @@ eventObg = {
 
 /**
  * This function navigates to the main page to continue edining by selecting Back button
+ * screen should be populated with user unput get from local storage
  */
 function backClicked() {
     // Define what should happen when the Back button is clicked
     console.log('Back button clicked!');
+    //ToDo  - navigate to the previous page
+    //ToDo - get values from local storage
+    //ToDo - render html elements
 }
 /**
  * This funtion save event details to Local Storage by clicking Save button
@@ -110,6 +115,11 @@ function backClicked() {
 function saveClicked() {
     // Define what should happen when the Save button is clicked
     console.log('Save button clicked!');
+    //ToDo  - save final objects to local storage
+    //ToDo - navigate to the firsr page
+    //ToDo  - get data from local storage
+    //ToDo - render html elements
+
 }
 
 /**
@@ -117,7 +127,40 @@ function saveClicked() {
  */
 function sendClicked() {
     // Define what should happen when the Send button is clicked
-    console.log('Send button clicked!');
+    console.log('Send button clicked! 0 ');
+    ///////////////////////////////////////////////////////////////
+    // Define the event object with details
+    var event = {
+        name: "Family Reunion",
+        location: "123 Main Street",
+        menu: "BBQ, hamburgers, hotdogs, and salads"
+    };
+    // Create an empty array to hold the email addresses
+    var emailList = [];
+
+    // Loop through the guestsList array and retrieve the email addresses
+    for (var i = 0; i < guestsList.length; i++) {
+        emailList.push(guestsList[i].email);
+    }
+
+    // Create the email subject
+    var subject = "Invitation to " + event.name;
+
+    // Create the email body with the event details
+    var body = "Dear family and friends,\n\nPlease join us for the " + event.name + " at " + event.location + ".\n\nThe menu includes " + event.menu + ".\n\nWe hope to see you there!\n\nBest regards,\nYour Name";
+
+    // Create the mailto URL with the email addresses, subject, and body
+    var mailtoUrl = "mailto:" + emailList.join(",") + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+    // Open the mailto dialog box
+    window.location.href = mailtoUrl;
+
+    ///////////////////////////////////////////////////////////////
+    //ToDo  - save final objects to local storage
+    //ToDo - open MailTo dialog with pre-populated data 
+    //ToDo - navigate to the firsr page
+    //ToDo  - get data from local storage
+    //ToDo - render html elements
 }
 
 
@@ -145,12 +188,12 @@ $(document).ready(function () {
 // Rich API ID - e0e48aa8
 // Rich API Key - 5ecc0a6a74140b8afe687fc73be0ddb2	—
 
-fetch ('insert api here')
-.then(function (response) {
-    return response.json();
-})
-.then(function(data) {
-    console.log(data);
-})
+fetch('insert api here')
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        console.log(data);
+    })
 
 
