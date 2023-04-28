@@ -253,4 +253,7 @@ fetch('insert api here')
         console.log(data);
     })
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> bbe8067d5bf6ff65854434d71b8132a9e0500ef5
