@@ -10,16 +10,24 @@
 
 // setting parameters
 var map= L.map('map', {
-    layer: MQ.mapLayer(),
+    layers: MQ.mapLayer(),
     center: [49.228537499999995, -123.10585798903601],
     zoom: 12
 });
 
+function runDirections(start, end){
+    //recreating new map layer
+   map= L.map('map', {
+    layers: MQ.mapLayer(),
+    center: [49.228537499999995, -123.10585798903601],
+    zoom: 12
+}); 
+
 var dir =MQ.routing.directions(); 
 dir.route({
     locations: [
-        'Vancouver, BC',
-        'Richmond, BC'
+        start,
+        end
     ]
 });
 
@@ -29,7 +37,7 @@ CustomRouteLayer = MQ.Routing.RouteLayer.extend({
         var marker;
 
         custom_icon=L.icon({
-            iconUrl:'C:\Users\alice\groupworkspace\project1\img\blue.png',
+            iconUrl:'blue.png',
             iconSize: [20,29],
             iconAnchor: [10,29],
             popupAnchor: [0,29]
@@ -42,7 +50,7 @@ CustomRouteLayer = MQ.Routing.RouteLayer.extend({
         var marker;
 
         custom_icon=L.icon({
-            iconUrl:'C:\Users\alice\groupworkspace\project1\img\destination icon.png',
+            iconUrl:'destination icon.png',
             iconSize: [20,29],
             iconAnchor: [10,29],
             popupAnchor: [0,29]
@@ -53,7 +61,28 @@ CustomRouteLayer = MQ.Routing.RouteLayer.extend({
 });
 map.addLayer(new CustomRouteLayer({
     directions: dir,
-}))
+    fitBounds:true
+}));
+}
+//runs when form is submitted
+function submitForm(event) {
+    event.preventDefault();
+
+    //delete current map layer (so when you type in a new location the old route doesn't stay on the map)
+    map.remove();
+
+    // get form data
+    start = document.getElementById("start").value;
+    end = document.getElementById("destination").value;
+
+    //run directions function
+    runDirections(start, end);
+}
+const form = document.getElementById('form');
+//call the submitForm function when submit
+form.addEventListener('submit', submitForm);
+
+
 /**
  * the section below describes the global Variables
  */
@@ -253,7 +282,3 @@ fetch('insert api here')
         console.log(data);
     })
 
-<<<<<<< HEAD
-
-=======
->>>>>>> bbe8067d5bf6ff65854434d71b8132a9e0500ef5
