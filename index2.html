@@ -26,10 +26,14 @@
         </div>
         <div role="tabpanel" class="tabpanel hidden" id="guests"> 
             <h3>Add Guests</h3>
+            <div class="guestData">
+            <input type="name" class="name" placeholder="guest name..." oninput="this.className = ''">
             <input type="email" class="email" placeholder="guest@email.com" oninput="this.className = ''">
+            </div>
         </div>
         <div role="tabpanel" class="tabpanel hidden" id="menu">
             <h3>Build Menu</h3>
+            <div class="menuCriteria">
             <div class="restrictions">
                 <h3>Dietary Restrictions</h3>
                 <input type="checkbox" id="vegt" name="vegt" value="vegetarian">
@@ -51,6 +55,7 @@
                 <label for="dairy">Dairy</label><br>
                 <input type="checkbox" id="gluten" name="gluten" value="gluten">
                 <label for="gluten">Gluten</label><br>
+            </div>
             </div>
             </div>
         <div role="tabpanel" class="tabpanel hidden" id="invite">
