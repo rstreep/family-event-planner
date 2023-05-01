@@ -1,3 +1,87 @@
+// var map = L.map('map').setView([51.505, -0.09], 13);
+
+// L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+// }).addTo(map);
+
+// L.marker([51.5, -0.09]).addTo(map)
+//     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+//     .openPopup();
+
+// setting parameters
+var map = L.map('map', {
+    layers: MQ.mapLayer(),
+    center: [49.228537499999995, -123.10585798903601],
+    zoom: 12
+});
+
+function runDirections(start, end) {
+    //recreating new map layer
+    map = L.map('map', {
+        layers: MQ.mapLayer(),
+        center: [49.228537499999995, -123.10585798903601],
+        zoom: 12
+    });
+
+    var dir = MQ.routing.directions();
+    dir.route({
+        locations: [
+            start,
+            end
+        ]
+    });
+
+    CustomRouteLayer = MQ.Routing.RouteLayer.extend({
+        createStartMarker: (location) => {
+            var custom_icon;
+            var marker;
+
+            custom_icon = L.icon({
+                iconUrl: 'img/blue.png',
+                iconSize: [20, 29],
+                iconAnchor: [10, 29],
+                popupAnchor: [0, 29]
+            });
+            marker = L.marker(location.latLng, { icon: custom_icon }).addTo(map);
+            return marker;
+        },
+        createEndMarker: (location) => {
+            var custom_icon;
+            var marker;
+
+            custom_icon = L.icon({
+                iconUrl: 'img/destination icon.png',
+                iconSize: [20, 29],
+                iconAnchor: [10, 29],
+                popupAnchor: [0, 29]
+            });
+            marker = L.marker(location.latLng, { icon: custom_icon }).addTo(map);
+            return marker;
+        }
+    });
+    map.addLayer(new CustomRouteLayer({
+        directions: dir,
+        fitBounds: true
+    }));
+}
+//runs when form is submitted
+function submitForm(event) {
+    event.preventDefault();
+
+    //delete current map layer (so when you type in a new location the old route doesn't stay on the map)
+    map.remove();
+
+    // get form data
+    start = document.getElementById("start").value;
+    end = document.getElementById("destination").value;
+
+    //run directions function
+    runDirections(start, end);
+}
+const form = document.getElementById('form');
+//call the submitForm function when submit
+form.addEventListener('submit', submitForm);
+
 
 /**
  * the section below describes the global Variables
@@ -156,7 +240,7 @@ function sendClicked() {
     // Open the mailto dialog box
     window.location.href = mailtoUrl;
 
-   
+
     /////////////////////////////////////////////////////////////////
     //ToDo  - save final objects to local storage
     //ToDo - open MailTo dialog with pre-populated data 
@@ -171,7 +255,7 @@ function sendClicked() {
  */
 //console.log ('Script is connected');
 
-$(document).ready(function () {
+
     // Define click event handlers for each button
     $('#backBtn').click(function () {
         backClicked();
@@ -184,18 +268,16 @@ $(document).ready(function () {
     $('#sendBtn').click(function () {
         sendClicked();
     });
-});
+
 
 // fetch function to grab data from edamam API
 // Rich API ID - e0e48aa8
 // Rich API Key - 5ecc0a6a74140b8afe687fc73be0ddb2	—
 
-fetch('insert api here')
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        console.log(data);
-    })
-
-
+// fetch('insert api here')
+//     .then(function (response) {
+//         return response.json();
+//     })
+//     .then(function (data) {
+//         console.log(data);
+//     })
