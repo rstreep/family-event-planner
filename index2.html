@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Fiesta</title>
+    <link rel="stylesheet" href="./assets/css/style2.css" />
+</head>
+<body style="border:0;margin:20px">
+    <h1>Welcome to Family Fiesta!</h1>
+    <div class="container">
+    <div class="tab-status">
+        <span class="tab active">1</span>
+        <span class="tab">2</span>
+        <span class="tab">3</span>
+        <span class="tab">4</span>
+    </div>
+    <form class="eventPlanner" action="#">
+        <div role="tab-list">
+        <div role="tabpanel" class="tabpanel" id="event" >
+            <h3>Create Event</h3>
+            <input class="name" placeholder="event name..." oninput="this.className = ''">
+            <input class="date" placeholder="time..." oninput="this.className = ''">
+            <input class="location" placeholder="location..." oninput="this.className = ''">
+        </div>
+        <div role="tabpanel" class="tabpanel hidden" id="guests"> 
+            <h3>Add Guests</h3>
+            <input type="email" class="email" placeholder="guest@email.com" oninput="this.className = ''">
+        </div>
+        <div role="tabpanel" class="tabpanel hidden" id="menu">
+            <h3>Build Menu</h3>
+            <div class="restrictions">
+                <h3>Dietary Restrictions</h3>
+                <input type="checkbox" id="vegt" name="vegt" value="vegetarian">
+                <label for="vegt">Vegetarian</label><br>
+                <input type="checkbox" id="veg" name="veg" value="vegan">
+                <label for="veg">Vegan</label><br>
+                <input type="checkbox" id="sugar" name="sugar" value="sugar-conscious">
+                <label for="sugar">Sugar Conscious</label><br>
+                <input type="checkbox" id="kosher" name="kosher" value="kosher">
+                <label for="kosher">Kosher</label><br>
+            </div>
+            <div class="tab" id="allergies">
+                <h3>Allergies</h3>
+                <input type="checkbox" id="nuts" name="nuts" value="nuts">
+                <label for="nuts">Tree Nuts</label><br>
+                <input type="checkbox" id="eggs" name="eggs" value="eggs">
+                <label for="eggs">Eggs</label><br>
+                <input type="checkbox" id="dairy" name="dairy" value="dairy">
+                <label for="dairy">Dairy</label><br>
+                <input type="checkbox" id="gluten" name="gluten" value="gluten">
+                <label for="gluten">Gluten</label><br>
+            </div>
+            </div>
+        <div role="tabpanel" class="tabpanel hidden" id="invite">
+            <h3>Invite Guests</h3>
+        </div>
+    </div>
+        <div class="pagination">
+            <button class="btn" id="prev">Previous</button>
+            <button class="btn" id="next">Continue</button>
+            <button class="btn btn-submit" id="submit">Submit</button>
+    </form>
+    </div>
+  <script src="./assets/js/main2.js"></script>
+</body>
+</html>
