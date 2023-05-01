@@ -1,0 +1,80 @@
+:root {
+    --color-1: blueviolet; 
+    --color-1-hover: lavender;
+    --color-2: aquamarine;
+    --color-2-hover:azure;
+    --light-text-color: ghostwhite;
+    --dark-text-color: navy;
+    --status-btn-bg: ghostwhite; 
+    --status-btn-bg-hover: ghostwhite;
+  }
+
+body {
+    background: linear-gradient(to right, var(--color-1), var(--color-2));
+    color:var(--dark-text-color);
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif; 
+}
+
+h1{
+    color:var(--light-text-color);
+}
+
+  .container {
+    margin: 10rem auto;
+    max-width: 500px;
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+
+  .hidden {
+    display: none;
+  }
+  
+  .tab-status {
+    display: flex;
+    align-items: center;
+  }
+  .tab-status span {
+    height: 20px;
+    width: 20px;
+    margin: 0 20px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+  }
+
+  .pagination {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .btn {
+    border: 0;
+    background: var(--color-1);
+    min-width: 75px;
+    padding: 10px;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .btn-submit {
+    background: var(--color-2);
+  }
+
+  .btn:hover {
+    background: var(--color-1-hover);
+    transition: ease-in-out .3s all;
+  }
+
+  .btn-submit:hover {
+    background: var(--color-2-hover);
+    transition: ease-in-out .3s all;
+  }
+
