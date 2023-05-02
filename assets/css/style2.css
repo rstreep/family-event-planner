@@ -3,6 +3,7 @@
     --color-1-hover: lavender;
     --color-2: aquamarine;
     --color-2-hover:azure;
+    --color-3: navy;
     --light-text-color: ghostwhite;
     --dark-text-color: navy;
     --status-btn-bg: ghostwhite; 
@@ -62,6 +63,16 @@ h1{
     border-radius: 25px;
     color: white;
     cursor: pointer;
+  }
+  .subBtn {
+    border: 0;
+    background: var(--color-3);
+    min-width: 20px;
+    padding: 5px;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    font-size: x-small;
   }
 
   .btn-submit {
