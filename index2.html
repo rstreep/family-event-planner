@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Family Fiesta</title>
     <link rel="stylesheet" href="./assets/css/style2.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body style="border:0;margin:20px">
     <h1>Welcome to Family Fiesta!</h1>
@@ -34,27 +35,45 @@
         <div role="tabpanel" class="tabpanel hidden" id="menu">
             <h3>Build Menu</h3>
             <div class="menuCriteria">
+            <input type="search" id="userSearch" placeholder="Enter Entree here...">
             <div class="restrictions">
                 <h3>Dietary Restrictions</h3>
-                <input type="checkbox" id="vegt" name="vegt" value="vegetarian">
+                <!-- <input type="checkbox" id="vegt" name="vegt" value="vegetarian">
                 <label for="vegt">Vegetarian</label><br>
                 <input type="checkbox" id="veg" name="veg" value="vegan">
                 <label for="veg">Vegan</label><br>
                 <input type="checkbox" id="sugar" name="sugar" value="sugar-conscious">
                 <label for="sugar">Sugar Conscious</label><br>
                 <input type="checkbox" id="kosher" name="kosher" value="kosher">
-                <label for="kosher">Kosher</label><br>
+                <label for="kosher">Kosher</label><br> -->
+                <label for="diets">Select a Dietary Restriction</label>
+                <select id="diets" name="diets">
+                    <option value="low-carb">Low-carb</option>
+                    <option value="low-fat">Low-fat</option>
+                    <option value="low-sodium">Low-sodium</option>
+                    <option value="high-protein">High-protein</option>
+                    <option value="high-fiber">High-fiber</option>
+                </select>
             </div>
             <div class="tab" id="allergies">
-                <h3>Allergies</h3>
-                <input type="checkbox" id="nuts" name="nuts" value="nuts">
+                <!-- <h3>Allergies</h3> -->
+                <h3>Health Concerns</h3>
+                <!-- <input type="checkbox" id="nuts" name="nuts" value="nuts">
                 <label for="nuts">Tree Nuts</label><br>
                 <input type="checkbox" id="eggs" name="eggs" value="eggs">
                 <label for="eggs">Eggs</label><br>
                 <input type="checkbox" id="dairy" name="dairy" value="dairy">
                 <label for="dairy">Dairy</label><br>
                 <input type="checkbox" id="gluten" name="gluten" value="gluten">
-                <label for="gluten">Gluten</label><br>
+                <label for="gluten">Gluten</label><br> -->
+                <label for="health concerns">Select health concerns</label>
+                <select id="health-concerns" name="health-concerns">
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="low-sugar">Low-sugar</option>
+                    <option value="peanut-free">Peanut-free</option>
+                    <option value="soy-free">Soy-free</option>
+                </select>
             </div>
             </div>
             <div class="menuOutput">
@@ -71,8 +90,8 @@
                 </ul>
                 <h4>Dessert</h4>
                 <ul>
-                    <li id="ent1"></li>
-                    <li id="ent2"></li>
+                    <li id="des1"></li>
+                    <li id="des2"></li>
                 </ul>
             </div>
             </div>
