@@ -14,12 +14,13 @@ nextButton.addEventListener('click', (event) => {
     currentStep += 1
   })
 
-
   previousButton.addEventListener('click', (event) => {
     event.preventDefault()
     tabPanels[currentStep].classList.add('hidden')
     tabTargets[currentStep].classList.remove('active')
     tabPanels[currentStep - 1].classList.remove('hidden')
     tabTargets[currentStep - 1].classList.add('active')
-    currentStep += 1
+    currentStep -= 1
   })
+
+  
