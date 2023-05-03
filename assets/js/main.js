@@ -1,91 +1,10 @@
-// var map = L.map('map').setView([51.505, -0.09], 13);
-
-// L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-// }).addTo(map);
-
-// L.marker([51.5, -0.09]).addTo(map)
-//     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-//     .openPopup();
-
-// setting parameters
-var map = L.map('map', {
-    layers: MQ.mapLayer(),
-    center: [49.228537499999995, -123.10585798903601],
-    zoom: 12
-});
-
-function runDirections(start, end) {
-    //recreating new map layer
-    map = L.map('map', {
-        layers: MQ.mapLayer(),
-        center: [49.228537499999995, -123.10585798903601],
-        zoom: 12
-    });
-
-    var dir = MQ.routing.directions();
-    dir.route({
-        locations: [
-            start,
-            end
-        ]
-    });
-
-    CustomRouteLayer = MQ.Routing.RouteLayer.extend({
-        createStartMarker: (location) => {
-            var custom_icon;
-            var marker;
-
-            custom_icon = L.icon({
-                iconUrl: 'img/blue.png',
-                iconSize: [20, 29],
-                iconAnchor: [10, 29],
-                popupAnchor: [0, 29]
-            });
-            marker = L.marker(location.latLng, { icon: custom_icon }).addTo(map);
-            return marker;
-        },
-        createEndMarker: (location) => {
-            var custom_icon;
-            var marker;
-
-            custom_icon = L.icon({
-                iconUrl: 'img/destination icon.png',
-                iconSize: [20, 29],
-                iconAnchor: [10, 29],
-                popupAnchor: [0, 29]
-            });
-            marker = L.marker(location.latLng, { icon: custom_icon }).addTo(map);
-            return marker;
-        }
-    });
-    map.addLayer(new CustomRouteLayer({
-        directions: dir,
-        fitBounds: true
-    }));
-}
-//runs when form is submitted
-function submitForm(event) {
-    event.preventDefault();
-
-    //delete current map layer (so when you type in a new location the old route doesn't stay on the map)
-    map.remove();
-
-    // get form data
-    start = document.getElementById("start").value;
-    end = document.getElementById("destination").value;
-
-    //run directions function
-    runDirections(start, end);
-}
-const form = document.getElementById('form');
-//call the submitForm function when submit
-form.addEventListener('submit', submitForm);
 
 
-/**
- * the section below describes the global Variables
- */
+
+
+// /**
+//  * the section below describes the global Variables
+//  */
 let guestsObj = [];
 let eventObg = {};
 
@@ -96,20 +15,15 @@ let eventObg = {};
  *  - name (string), guest's Firs and Last name
  *  - email (string), guest's email adress
  */
-guestsList = [
+guestsList = 
     {
         salutaion: "Mr.",
         name: "John Smith",
-        email: "johnsmith@email.com"
-    }, {
-        salutaion: "Ms.",
-        name: "Jane Doe",
-        email: " janedoe@email.com"
-    }, {
-        salutaion: "Mrs.",
-        name: "Sarah Lee ",
-        email: "sarahlee@email.com"
-    }];
+        email: "johnsmith@email.com",
+        address: "Boston",
+        link: ""
+    };
+   
 eventObg = {
     eventName: "Family Reunion",
     eventDate: "Thu May 4th, 2023, 7pm est",
@@ -181,6 +95,22 @@ eventObg = {
         }],
     advertisements: ['cards games', 'dancing', 'live music']
 }
+
+var directionsButton = document.querySelector('#getDirections');
+
+directionsButton.addEventListener('click', (event) => {
+    console.log('working');
+    var start = guestsList.address;
+    var end ="boston";
+    var url = "https://www.mapquest.com/directions/from/"+start+"/to/"+end;
+    var directionsLink =document.createElement('a');
+    directionsLink.setAttribute('href',url);
+    directionsLink.textContent="directions";
+    
+    guestsList.directionsLink =url;
+    console.log(directionsLink)
+    document.getElementById('guests').appendChild(directionsLink);
+  });
 
 
 /**
