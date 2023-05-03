@@ -12,15 +12,15 @@ let eventObj = {};
  *  - name (string), guest's Firs and Last name
  *  - email (string), guest's email adress
  */
-guestsList = 
-    {
-        salutaion: "Mr.",
-        name: "John Smith",
-        email: "johnsmith@email.com",
-        address: "New York",
-        link: ""
-    };
-   
+guestsList =
+{
+    salutaion: "Mr.",
+    name: "John Smith",
+    email: "johnsmith@email.com",
+    address: "New York",
+    link: "link"
+};
+
 eventObj = {
     eventName: "Family Reunion",
     eventDate: "Thu May 4th, 2023, 7pm est",
@@ -62,40 +62,52 @@ const nextButton = document.querySelector('#next')
 const submitButton = document.querySelector('#submit')
 const tabTargets = document.querySelectorAll('.tab')
 const tabPanels = document.querySelectorAll('.tabpanel')
+
 let currentStep = 0
 
 nextButton.addEventListener('click', (event) => {
     event.preventDefault()
+    console.log("Next"+currentStep);
     tabPanels[currentStep].classList.add('hidden')
     tabTargets[currentStep].classList.remove('active')
-    tabPanels[currentStep + 1].classList.remove('hidden')
-    tabTargets[currentStep + 1].classList.add('active')
+        tabPanels[currentStep + 1].classList.remove('hidden')
+        tabTargets[currentStep + 1].classList.add('active')
     currentStep += 1
+    if (currentStep===2){
+        saveGuestInfo();
+    }
+    return;
 })
 
 previousButton.addEventListener('click', (event) => {
+    if (currentStep === 0) return;
     event.preventDefault()
+    console.log("Previous"+currentStep);
     tabPanels[currentStep].classList.add('hidden')
     tabTargets[currentStep].classList.remove('active')
     tabPanels[currentStep - 1].classList.remove('hidden')
     tabTargets[currentStep - 1].classList.add('active')
     currentStep -= 1
-  })
+    return;
+})
 
 directionsButton.addEventListener('click', (event) => {
     console.log('working');
-    // var start = "guestsList.address";
-    var start = "Boston";
-    var end ="New York";
-    var url = "https://rstreep.github.io/family-event-planner/map.html?start="+start+"&destination="+end;
-    var directionsLink =document.createElement('a');
-    directionsLink.setAttribute('href',url);
-    directionsLink.textContent="directions";
-    
-    guestsList.directionsLink =url;
+    event.preventDefault();
+    var start= $('#address').val();
+    var end= $('#eventLocation').val(); 
+    var url = "https://rstreep.github.io/family-event-planner/map.html?start=" + start + "&destination=" + end;
+    var directionsLink = document.createElement('a');
+    directionsLink.setAttribute('href', url);
+    directionsLink.setAttribute('id', 'directionsLink');
+    directionsLink.textContent = "directions";
+
+    guestsList.directionsLink = url;
     console.log(directionsLink)
     document.getElementById('guests').appendChild(directionsLink);
-  });
+    // guestsList.link = $('#directionsLink').attr('href');
+    return;
+});
 
 function init() {
     // guestsList.name = 'rich';
@@ -106,10 +118,22 @@ function init() {
 
     console.log(eventObj);
 }
-
+function saveGuestInfo(){
+    var email = $('#email').val();
+    var name = $('#name').val();
+    var address =  $('#address').val();
+    var directionLink = $('#directionsLink').attr('href');
+    guestsList.name = name;
+    guestsList.email = email;
+    guestsList.address = address;
+    guestsList.link = directionLink;
+    localStorage.setItem("guestArray", JSON.stringify(guestsList));
+    setGuestsData();
+    return;
+}
 function getGuestsData() {
     var saveData = JSON.parse(localStorage.getItem('guestsList'));
-    if(saveData.length > 0) {
+    if (saveData.length > 0) {
         localStorage.getItem('guestsList', JSON.parse(guestsList));
     };
     console.log(guestsList);
@@ -118,14 +142,14 @@ function getGuestsData() {
 
 function setGuestsData() {
     // localStorage.setItem('guestsList', JSON.stringify(guestsList));
-    if(guestsList.length > 0) {
+    if (guestsList.length > 0) {
         localStorage.setItem('guestsList', JSON.stringify(guestsList));
     }
     console.log(guestsList);
 }
 
 function setEventData() {
-    if(eventObj) {
+    if (eventObj) {
         localStorage.setItem('eventObj', JSON.stringify(eventObj));
     }
     console.log(eventObj);
@@ -133,7 +157,7 @@ function setEventData() {
 
 function getEventData() {
     var saveData = JSON.parse(localStorage.getItem('eventObj'));
-    if(saveData.length > 0) {
+    if (saveData.length > 0) {
         localStorage.getItem('eventObj', JSON.parse(eventObj));
     };
     console.log(eventObj);
@@ -141,46 +165,4 @@ function getEventData() {
 }
 
 window.addEventListener("load", init);
-
-// /**
-//  * This function send invites to the guests by clicking Sans button
-//  */
-// function sendClicked() {
-//     // Define what should happen when the Send button is clicked
-//     console.log('Send button clicked! 0 ');
-//     // ////////////////// POC of mailTo    /////////////////////////////////////////////
-//     // Define the event object with details
-//     var event = {
-//         name: "Family Reunion",
-//         location: "123 Main Street",
-//         menu: "BBQ, hamburgers, hotdogs, and salads"
-//     };
-//     // Create an empty array to hold the email addresses
-//     var emailList = [];
-
-//     // Loop through the guestsList array and retrieve the email addresses
-//     for (var i = 0; i < guestsList.length; i++) {
-//         emailList.push(guestsList[i].email);
-//     }
-
-//     // Create the email subject
-//     var subject = "Invitation to " + event.name;
-
-//     // Create the email body with the event details
-//     var body = "Dear family and friends,\n\nPlease join us for the " + event.name + " at " + event.location + ".\n\nThe menu includes " + event.menu + ".\n\nWe hope to see you there!\n\nBest regards,\nYour Name";
-
-//     // Create the mailto URL with the email addresses, subject, and body
-//     var mailtoUrl = "mailto:" + emailList.join(",") + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-
-//     // Open the mailto dialog box
-//     window.location.href = mailtoUrl;
-
-
-//     /////////////////////////////////////////////////////////////////
-//     //ToDo  - save final objects to local storage
-//     //ToDo - open MailTo dialog with pre-populated data 
-//     //ToDo - navigate to the firsr page
-//     //ToDo  - get data from local storage
-//     //ToDo - render html elements
-// }
 
