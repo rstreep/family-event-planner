@@ -68,7 +68,7 @@ let currentStep = 0
 nextButton.addEventListener('click', (event) => {
     if (currentStep === 3) return;
     event.preventDefault()
-    console.log("Next" + currentStep);
+    // console.log("Next" + currentStep);
     tabPanels[currentStep].classList.add('hidden')
     tabTargets[currentStep].classList.remove('active')
     tabPanels[currentStep + 1].classList.remove('hidden')
@@ -84,7 +84,7 @@ nextButton.addEventListener('click', (event) => {
 previousButton.addEventListener('click', (event) => {
     if (currentStep === 0) return;
     event.preventDefault()
-    console.log("Previous" + currentStep);
+    // console.log("Previous" + currentStep);
     tabPanels[currentStep].classList.add('hidden')
     tabTargets[currentStep].classList.remove('active')
     tabPanels[currentStep - 1].classList.remove('hidden')
@@ -101,15 +101,15 @@ directionsButton.addEventListener('click', (event) => {
 
     var url = "https://rstreep.github.io/family-event-planner/map.html?start=" + start + "&destination=" + end;
     if ($('#directionsLink').html()) {
-        console.log('it is direction link');
+        // console.log('it is direction link');
     } else {
         var directionsLink = $('#directionsLink')
         directionsLink = document.createElement('a');
         directionsLink.setAttribute('id', 'directionsLink');
         directionsLink.textContent = "directions";
 
-        guestsList.directionsLink = url;
-        console.log(directionsLink)
+        guestsList.link = url;
+        // console.log(directionsLink)
         document.getElementById('guests').appendChild(directionsLink);
     }
     directionsLink.setAttribute('href', url);
@@ -137,7 +137,7 @@ function saveGuestInfo() {
     guestsList.email = email;
     guestsList.address = address;
     guestsList.link = directionLink;
-    localStorage.setItem("guestArray", JSON.stringify(guestsList));
+    localStorage.setItem("guestsList", JSON.stringify(guestsList));
     setGuestsData();
     return;
 }
@@ -173,18 +173,85 @@ function getEventData() {
     console.log(eventObj);
     return saveData;
 }
+function renderPreview() {
+    console.log('Render Preview');
+    var previewContainer = $('#invite');
+// guestsList =
+// {
+//     salutaion: "Mr.",
+//     name: "John Smith",
+//     email: "johnsmith@email.com",
+//     address: "New York",
+//     link: "link"
+// };
+// eventObj = {
+//     eventName: "Family Reunion",
+//     eventDate: "Thu May 4th, 2023, 7pm est",
+//     eventLocation: "The Franklin Institute, Center City, Address: 222 N 20th Street, Philadelphia, PA 19103",
+//     dietReswtrictions: 'vegan',
+//     healthConcerns: 'peanut-free',
+//     menuItems: [
+
+    guestsList = getGuestsData();
+    console.log ('guestsList - '+guestsList);
+
+    // Define variables for the different components of the event preview
+    var recipient = guestsList.email; //"test@gmail.com";
+    var eventName = eventObj.eventName;//"Family Event";
+    var location = eventObj.eventLocation; //"123 Main St.";
+    var date = eventObj.eventDate; //"June 1st, 2023";
+    var menu = "BBQ, hamburgers, hot dogs, and sides";
+    var name = guestsList.name;//"John Doe";
+    var emailBody = `
+          <p>
+            Dear <strong>${name}</strong>,
+            <br><br>
+            You are cordially invited to our family event, <strong>${eventName}</strong>, 
+            which will take place at <strong>${location}</strong> on <strong>${date}</strong>. 
+            We would love for you to join us for a day of fun and celebration with family and friends. 
+            <br><br>
+            We will be serving a delicious menu, including:
+            <br><br>
+             <strong>${menu}</strong>, 
+             <br><br>
+            There will be plenty of activities for all ages to enjoy. 
+            <br><br>
+            We hope you can make it, and we look forward to seeing you there!
+            <br><br>
+            Best regards,
+            <br>
+            <strong>Family Fiesta team!</strong>
+          </p>
+        `;
+
+    // Create the event preview container
+    var eventPreview = $("<div>").attr({
+        "id": "event-preview",
+        "class": "container"
+    });
+
+    // Create the recipient container and add it to the event preview
+    var recipientContainer = $("<div>").attr("class", "container").css("border", "2px solid violet");
+    recipientContainer.append($("<h4>").text("MailTo: " + recipient));
+    eventPreview.append(recipientContainer);
+
+    // Create the subject container and add it to the event preview
+    var subjectContainer = $("<div>").attr("class", "container").css("border", "2px solid violet");
+    subjectContainer.append($("<h4>").text("Subject: Invitation for " + eventName));
+    eventPreview.append(subjectContainer);
+
+    // // Create the email body container and add it to the event preview
+    var emailContainer = $("<div>").attr("class", "container").css("border", "2px solid violet");
+    emailContainer.append($("<h4>").text("Email"));
+    emailContainer.append(emailBody);
+    eventPreview.append(emailContainer);
+
+    $("#invite").append(eventPreview);
+}
 function eventWizardLogic(currentStep) {
-    var stepIcon = $('#' + currentStep);
+    // var stepIcon = $('#' + currentStep);
     var greyColor = '#bbbbbb';
     var purpleColor = 'blueviolet';
-
-
-    // //set default values for the class
-    // previousButton.classList.add('hidden');
-    // nextButton.classList.add('hidden');
-    // submitButton.classList.add('hidden');
-
-    // console.log('currentStep- ' + stepIcon.attr('id'))
     switch (currentStep) {
         case 0:
             $('#' + currentStep).css('background-color', purpleColor);
@@ -192,7 +259,7 @@ function eventWizardLogic(currentStep) {
             previousButton.classList.replace('active', 'hidden');
             nextButton.classList.replace('hidden', 'active');
             submitButton.classList.replace('active', 'hidden');
-            console.log("Event Details");
+            // console.log("Event Details");
             break;
         case 1:
             $('#' + currentStep).css('background-color', purpleColor);
@@ -201,7 +268,7 @@ function eventWizardLogic(currentStep) {
             previousButton.classList.replace('hidden', 'active');
             nextButton.classList.replace('hidden', 'active');
             submitButton.classList.replace('active', 'hidden');
-            console.log("Add Guest");
+            // console.log("Add Guest");
             break;
         case 2:
             $('#' + currentStep).css('background-color', purpleColor);
@@ -210,7 +277,7 @@ function eventWizardLogic(currentStep) {
             previousButton.classList.replace('hidden', 'active');
             nextButton.classList.replace('hidden', 'active');
             submitButton.classList.replace('active', 'hidden');
-            console.log("Add Menu");
+            // console.log("Add Menu");
             break;
         case 3:
             $('#' + currentStep).css('background-color', purpleColor);
@@ -218,7 +285,11 @@ function eventWizardLogic(currentStep) {
             previousButton.classList.replace('hidden', 'active');
             nextButton.classList.replace('active', 'hidden');
             submitButton.classList.replace('hidden', 'active');
-            console.log("Preview");
+            // console.log("Preview");
+            //ToDo - page renderring
+            renderPreview();
+            //ToDo - click event for MailTo
+
             break;
         default:
             console.log("Unknown step");
