@@ -25,7 +25,7 @@ eventObj = {
     eventName: "Family Reunion",
     eventDate: "Thu May 4th, 2023, 7pm est",
     eventLocation: "The Franklin Institute, Center City, Address: 222 N 20th Street, Philadelphia, PA 19103",
-    dietReswtrictions: 'vegan',
+    dietRestrictions: 'vegan',
     healthConcerns: 'peanut-free',
     menuItems: [
         {
@@ -176,7 +176,6 @@ function init() {
 
     eventWizardLogic(0);
 
-    // guestsList.name = 'rich';
     setGuestsData();
     guestsList = getGuestsData();
     setEventData();
@@ -184,6 +183,7 @@ function init() {
 
     console.log(eventObj);
 }
+
 function saveGuestInfo() {
     var email = $('#email').val();
     var name = $('#name').val();
@@ -199,41 +199,45 @@ function saveGuestInfo() {
 }
 function getGuestsData() {
     var saveData = JSON.parse(localStorage.getItem('guestsList'));
-    if (saveData.length > 0) {
-        localStorage.getItem('guestsList', JSON.parse(guestsList));
-    };
+    // if (saveData) {
+    //     localStorage.getItem('guestsList', JSON.parse(guestsList));
+    // };
     console.log(guestsList);
     return saveData;
 }
 
 function setGuestsData() {
     // localStorage.setItem('guestsList', JSON.stringify(guestsList));
-    if (guestsList.length > 0) {
+    if (guestsList) {
         localStorage.setItem('guestsList', JSON.stringify(guestsList));
     }
     console.log(guestsList);
 }
 
 function setEventData() {
+    console.log('setEventData0');
     if (eventObj) {
+        console.log('setEventData1');
         localStorage.setItem('eventObj', JSON.stringify(eventObj));
     }
-    console.log(eventObj);
+    console.log('savedObject' + eventObj);
 }
 
 function getEventData() {
+    console.log('getEventData0');
     var saveData = JSON.parse(localStorage.getItem('eventObj'));
-    if (saveData.length > 0) {
-        localStorage.getItem('eventObj', JSON.parse(eventObj));
-    };
-    console.log(eventObj);
+    // if (saveData) {
+    //     console.log('getEventData1');
+    //     localStorage.getItem('eventObj', JSON.parse(eventObj));
+    // };
+    console.log('getData' + eventObj);
     return saveData;
 }
 function renderPreview() {
     console.log('Render Preview');
     var previewContainer = $('#invite')
     guestsList = getGuestsData();
-    // console.log ('guestsList - '+guestsList);
+    console.log ('guestsList - '+guestsList);
 
     // Define variables for the different components of the event preview
     var recipient = guestsList.email; //"test@gmail.com";
