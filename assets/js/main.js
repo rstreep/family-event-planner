@@ -1,4 +1,27 @@
+const previousButton = document.querySelector('#prev')
+const nextButton = document.querySelector('#next')
+const submitButton = document.querySelector('#submit')
+const tabTargets = document.querySelectorAll('.tab')
+const tabPanels = document.querySelectorAll('.tabpanel')
+let currentStep = 0
 
+nextButton.addEventListener('click', (event) => {
+    event.preventDefault()
+    tabPanels[currentStep].classList.add('hidden')
+    tabTargets[currentStep].classList.remove('active')
+    tabPanels[currentStep + 1].classList.remove('hidden')
+    tabTargets[currentStep + 1].classList.add('active')
+    currentStep += 1
+})
+
+previousButton.addEventListener('click', (event) => {
+    event.preventDefault()
+    tabPanels[currentStep].classList.add('hidden')
+    tabTargets[currentStep].classList.remove('active')
+    tabPanels[currentStep - 1].classList.remove('hidden')
+    tabTargets[currentStep - 1].classList.add('active')
+    currentStep -= 1
+  })
 
 
 
@@ -20,7 +43,7 @@ guestsList =
         salutaion: "Mr.",
         name: "John Smith",
         email: "johnsmith@email.com",
-        address: "Boston",
+        address: "New York",
         link: ""
     };
    
@@ -100,9 +123,10 @@ var directionsButton = document.querySelector('#getDirections');
 
 directionsButton.addEventListener('click', (event) => {
     console.log('working');
-    var start = guestsList.address;
-    var end ="boston";
-    var url = "https://www.mapquest.com/directions/from/"+start+"/to/"+end;
+    // var start = "guestsList.address";
+    var start = "Boston";
+    var end ="New York";
+    var url = "https://rstreep.github.io/family-event-planner/map.html?start="+start+"&destination="+end;
     var directionsLink =document.createElement('a');
     directionsLink.setAttribute('href',url);
     directionsLink.textContent="directions";
