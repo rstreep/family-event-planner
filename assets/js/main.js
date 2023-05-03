@@ -108,7 +108,7 @@ directionsButton.addEventListener('click', (event) => {
         directionsLink.setAttribute('id', 'directionsLink');
         directionsLink.textContent = "directions";
 
-        guestsList.directionsLink = url;
+        guestsList.link = url;
         // console.log(directionsLink)
         document.getElementById('guests').appendChild(directionsLink);
     }
@@ -137,7 +137,7 @@ function saveGuestInfo() {
     guestsList.email = email;
     guestsList.address = address;
     guestsList.link = directionLink;
-    localStorage.setItem("guestArray", JSON.stringify(guestsList));
+    localStorage.setItem("guestsList", JSON.stringify(guestsList));
     setGuestsData();
     return;
 }
@@ -176,15 +176,32 @@ function getEventData() {
 function renderPreview() {
     console.log('Render Preview');
     var previewContainer = $('#invite');
-    // var emailTo =  $("<p>").text("MailTo: ").attr('id', 'emailTo');
-    // previewContainer.appendChild(emailTo);
+// guestsList =
+// {
+//     salutaion: "Mr.",
+//     name: "John Smith",
+//     email: "johnsmith@email.com",
+//     address: "New York",
+//     link: "link"
+// };
+// eventObj = {
+//     eventName: "Family Reunion",
+//     eventDate: "Thu May 4th, 2023, 7pm est",
+//     eventLocation: "The Franklin Institute, Center City, Address: 222 N 20th Street, Philadelphia, PA 19103",
+//     dietReswtrictions: 'vegan',
+//     healthConcerns: 'peanut-free',
+//     menuItems: [
+
+    guestsList = getGuestsData();
+    console.log ('guestsList - '+guestsList);
+
     // Define variables for the different components of the event preview
-    var recipient = "test@gmail.com";
-    var eventName = "Family Event";
-    var location = "123 Main St.";
-    var date = "June 1st, 2023";
+    var recipient = guestsList.email; //"test@gmail.com";
+    var eventName = eventObj.eventName;//"Family Event";
+    var location = eventObj.eventLocation; //"123 Main St.";
+    var date = eventObj.eventDate; //"June 1st, 2023";
     var menu = "BBQ, hamburgers, hot dogs, and sides";
-    var name = "John Doe";
+    var name = guestsList.name;//"John Doe";
     var emailBody = `
           <p>
             Dear <strong>${name}</strong>,
@@ -193,8 +210,11 @@ function renderPreview() {
             which will take place at <strong>${location}</strong> on <strong>${date}</strong>. 
             We would love for you to join us for a day of fun and celebration with family and friends. 
             <br><br>
-            We will be serving a delicious menu, including <strong>${menu}</strong>, 
-            and there will be plenty of activities for all ages to enjoy. 
+            We will be serving a delicious menu, including:
+            <br><br>
+             <strong>${menu}</strong>, 
+             <br><br>
+            There will be plenty of activities for all ages to enjoy. 
             <br><br>
             We hope you can make it, and we look forward to seeing you there!
             <br><br>
