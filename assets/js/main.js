@@ -3,8 +3,13 @@ const nextButton = document.querySelector('#next')
 const submitButton = document.querySelector('#submit')
 const tabTargets = document.querySelectorAll('.tab')
 const tabPanels = document.querySelectorAll('.tabpanel')
+const address= document.querySelector('.address')
+const finalAddress= document.querySelector('.location')
+const addGuest = document.querySelector('#addGuest')
+const email = document.querySelector('#email')
+const name = document.querySelector('#name')
 let currentStep = 0
-
+const guestArray =[]
 nextButton.addEventListener('click', (event) => {
     event.preventDefault()
     tabPanels[currentStep].classList.add('hidden')
@@ -14,6 +19,13 @@ nextButton.addEventListener('click', (event) => {
     currentStep += 1
 })
 
+addGuest.addEventListener('click', (event)=>{
+    event.preventDefault()
+    guestArray.push({
+        email: email.value, name: name.value, address: address.value
+    })
+    localStorage.setItem("guestArray", JSON.stringify(guestArray))
+})
 previousButton.addEventListener('click', (event) => {
     event.preventDefault()
     tabPanels[currentStep].classList.add('hidden')
@@ -124,8 +136,8 @@ var directionsButton = document.querySelector('#getDirections');
 directionsButton.addEventListener('click', (event) => {
     console.log('working');
     // var start = "guestsList.address";
-    var start = "Boston";
-    var end ="New York";
+    var start = address.value;
+    var end = finalAddress.value;
     var url = "https://rstreep.github.io/family-event-planner/map.html?start="+start+"&destination="+end;
     var directionsLink =document.createElement('a');
     directionsLink.setAttribute('href',url);
@@ -162,6 +174,7 @@ function setGuestsData() {
     }
     console.log(guestsList);
 }
+// setEventData()
 
 function setEventData() {
     if(eventObj) {
@@ -180,6 +193,7 @@ function getEventData() {
 }
 
 window.addEventListener("load", init);
+
 
 
 /**

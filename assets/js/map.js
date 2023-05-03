@@ -27,7 +27,7 @@ function runDirections(start, end) {
             var marker;
 
             custom_icon = L.icon({
-                iconUrl: 'img/blue.png',
+                iconUrl: 'assets/img/blue.png',
                 iconSize: [20, 29],
                 iconAnchor: [10, 29],
                 popupAnchor: [0, 29]
@@ -40,7 +40,7 @@ function runDirections(start, end) {
             var marker;
 
             custom_icon = L.icon({
-                iconUrl: 'img/destination icon.png',
+                iconUrl: 'assets/img/destination icon.png',
                 iconSize: [20, 29],
                 iconAnchor: [10, 29],
                 popupAnchor: [0, 29]
