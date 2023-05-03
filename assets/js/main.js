@@ -1,44 +1,3 @@
-<<<<<<< HEAD
-const previousButton = document.querySelector('#prev')
-const nextButton = document.querySelector('#next')
-const submitButton = document.querySelector('#submit')
-const tabTargets = document.querySelectorAll('.tab')
-const tabPanels = document.querySelectorAll('.tabpanel')
-const address= document.querySelector('.address')
-const finalAddress= document.querySelector('.location')
-const addGuest = document.querySelector('#addGuest')
-const email = document.querySelector('#email')
-const name = document.querySelector('#name')
-let currentStep = 0
-const guestArray =[]
-nextButton.addEventListener('click', (event) => {
-    event.preventDefault()
-    tabPanels[currentStep].classList.add('hidden')
-    tabTargets[currentStep].classList.remove('active')
-    tabPanels[currentStep + 1].classList.remove('hidden')
-    tabTargets[currentStep + 1].classList.add('active')
-    currentStep += 1
-})
-
-addGuest.addEventListener('click', (event)=>{
-    event.preventDefault()
-    guestArray.push({
-        email: email.value, name: name.value, address: address.value
-    })
-    localStorage.setItem("guestArray", JSON.stringify(guestArray))
-})
-previousButton.addEventListener('click', (event) => {
-    event.preventDefault()
-    tabPanels[currentStep].classList.add('hidden')
-    tabTargets[currentStep].classList.remove('active')
-    tabPanels[currentStep - 1].classList.remove('hidden')
-    tabTargets[currentStep - 1].classList.add('active')
-    currentStep -= 1
-  })
-
-
-=======
->>>>>>> 40bb9ff6d42e5d7797e0f2652ad9d5e4760f7be7
 
 // /**
 //  * the section below describes the global Variables
@@ -192,21 +151,6 @@ submitButton.addEventListener('click', (event) => {
 })
 
 directionsButton.addEventListener('click', (event) => {
-<<<<<<< HEAD
-    console.log('working');
-    // var start = "guestsList.address";
-    var start = address.value;
-    var end = finalAddress.value;
-    var url = "https://rstreep.github.io/family-event-planner/map.html?start="+start+"&destination="+end;
-    var directionsLink =document.createElement('a');
-    directionsLink.setAttribute('href',url);
-    directionsLink.textContent="directions";
-    
-    guestsList.directionsLink =url;
-    console.log(directionsLink)
-    document.getElementById('guests').appendChild(directionsLink);
-  });
-=======
     event.preventDefault();
     var start = $('#address').val();
     var end = $('#eventLocation').val();
@@ -227,7 +171,6 @@ directionsButton.addEventListener('click', (event) => {
     directionsLink.setAttribute('href', url);
     return;
 });
->>>>>>> 40bb9ff6d42e5d7797e0f2652ad9d5e4760f7be7
 
 function init() {
 
@@ -270,7 +213,6 @@ function setGuestsData() {
     }
     console.log(guestsList);
 }
-// setEventData()
 
 function setEventData() {
     console.log('setEventData0');
@@ -341,19 +283,6 @@ function renderPreview() {
         "class": "container"
     });
 
-<<<<<<< HEAD
-
-/**
- * This function navigates to the main page to continue edining by selecting Back button
- * screen should be populated with user unput get from local storage
- */
-function backClicked() {
-    // Define what should happen when the Back button is clicked
-    console.log('Back button clicked!');
-    //ToDo  - navigate to the previous page
-    //ToDo - get values from local storage
-    //ToDo - render html elements
-=======
     // Create the recipient container and add it to the event preview
     var recipientContainer = $("<div>").attr("class", "container").css("border", "2px solid violet");
     recipientContainer.append($("<h4>").text("MailTo: " + recipient));
@@ -371,7 +300,6 @@ function backClicked() {
     eventPreview.append(emailContainer);
 
     $("#invite").append(eventPreview);
->>>>>>> 40bb9ff6d42e5d7797e0f2652ad9d5e4760f7be7
 }
 function eventWizardLogic(currentStep) {
     // var stepIcon = $('#' + currentStep);
@@ -422,4 +350,3 @@ function eventWizardLogic(currentStep) {
 
 }
 window.addEventListener("load", init);
-
