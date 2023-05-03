@@ -93,6 +93,62 @@ previousButton.addEventListener('click', (event) => {
     eventWizardLogic(currentStep);
     return;
 })
+/**
+ * This function opens mailTo dialog with thedefined data by clicking Send button 
+ */
+submitButton.addEventListener('click', (event) => {
+    //event.preventDefault()
+    console.log('mailto');
+    // var event = {
+    //     name: "Family Reunion",
+    //     location: "123 Main Street",
+    //     menu: "BBQ, hamburgers, hotdogs, and salads"
+    // };
+    // Create an empty array to hold the email addresses
+    // var emailList = [];
+
+    // Loop through the guestsList array and retrieve the email addresses
+    // for (var i = 0; i < guestsList.length; i++) {
+    //     emailList.push(guestsList[i].email);
+    // }
+
+    // Create the email subject
+    var subject = "Invitation to " + event.name;
+
+    //Create the email body with the event details
+    var body = `Dear ${guestsList.name},
+
+    You are cordially invited to our family event, ${event.name}, which will take place at ${eventObj.eventLocation} on ${eventObj.eventDate}. We would love for you to join us for a day of fun and celebration with family and friends. 
+    
+   # Menu:
+    ------------
+    Appetizer:
+    ${eventObj.menuItems[0].dishName}
+    ${eventObj.menuItems[1].dishName}
+    
+    Entree:
+    ${eventObj.menuItems[2].dishName}
+    ${eventObj.menuItems[3].dishName}
+    
+    Dessert:
+    ${eventObj.menuItems[4].dishName}
+    ${eventObj.menuItems[5].dishName}
+    
+    There will be plenty of activities for all ages to enjoy. 
+    
+    We hope you can make it, and we look forward to seeing you there!
+    
+    Best regards,
+    Family Fiesta team!
+    `;
+
+    // Create the mailto URL with the email addresses, subject, and body
+    var mailtoUrl = "mailto:" + guestsList.email + "?subject=" + encodeURIComponent(eventObj.eventName) + "&body=" + encodeURIComponent(body);
+
+    // Open the mailto dialog box
+    window.location.href = mailtoUrl;
+    return;
+})
 
 directionsButton.addEventListener('click', (event) => {
     event.preventDefault();
@@ -175,28 +231,9 @@ function getEventData() {
 }
 function renderPreview() {
     console.log('Render Preview');
-    var previewContainer = $('#invite');
-// guestsList =
-// {
-//     salutaion: "Mr.",
-//     name: "John Smith",
-//     email: "johnsmith@email.com",
-//     address: "New York",
-//     link: "link"
-// };
-// eventObj = {
-//     eventName: "Family Reunion",
-//     eventDate: "Thu May 4th, 2023, 7pm est",
-//     eventLocation: "The Franklin Institute, Center City, Address: 222 N 20th Street, Philadelphia, PA 19103",
-//     dietReswtrictions: 'vegan',
-//     healthConcerns: 'peanut-free',
-//     menuItems: [
-    // dishType: "Appetizer 1",
-    // dishName: "shrimp cocktail",
-    // dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',    
-
+    var previewContainer = $('#invite')
     guestsList = getGuestsData();
-    console.log ('guestsList - '+guestsList);
+    // console.log ('guestsList - '+guestsList);
 
     // Define variables for the different components of the event preview
     var recipient = guestsList.email; //"test@gmail.com";
@@ -216,13 +253,13 @@ function renderPreview() {
             <br><br>
             We will be serving a delicious <strong>Menu</strong>, including:
             <hr>
-            <strong>Appetizer<strong>
+            <strong>Appetizer</strong>
             <br> <em><a href="${eventObj.menuItems[0].dishLink}">${eventObj.menuItems[0].dishName}</a></em><br>
             <em><a href="${eventObj.menuItems[1].dishLink}">${eventObj.menuItems[1].dishName}</a></em><br><br>
             <strong>Entree</strong>
             <br> <em><a href="${eventObj.menuItems[2].dishLink}">${eventObj.menuItems[2].dishName}</a></em><br>
             <em><a href="${eventObj.menuItems[3].dishLink}">${eventObj.menuItems[3].dishName}</a></em><br><br>
-            <strong>Dessert<strong>
+            <strong>Dessert</strong>
             <br> <em><a href="${eventObj.menuItems[4].dishLink}">${eventObj.menuItems[4].dishName}</a></em><br>
             <em><a href="${eventObj.menuItems[5].dishLink}">${eventObj.menuItems[5].dishName}</a></em><br><br>
             <hr>
