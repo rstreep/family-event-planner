@@ -117,7 +117,6 @@ submitButton.addEventListener('click', (event) => {
 
     //Create the email body with the event details
     var body = `Dear ${guestsList.name},
-
     You are cordially invited to our family event, ${event.name}, which will take place at ${eventObj.eventLocation} on ${eventObj.eventDate}. We would love for you to join us for a day of fun and celebration with family and friends. 
     
    # Menu:
