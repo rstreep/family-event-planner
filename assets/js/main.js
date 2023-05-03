@@ -184,6 +184,27 @@ function init() {
     console.log(eventObj);
 }
 
+function saveMenuInfo() {
+    var diet = $('#diets').val();
+    var health = $('#health-concerns').val();
+    var appetizer1 = $('#app1').val();
+    var appetizer2 = $('#app2').val();
+    var entree1 = $('#ent1').val();
+    var entree2 = $('#ent2').val();
+    var dessert1 = $('#des1').val();
+    var dessert2 = $('#des2').val();
+    eventObj.dietRestrictions = diet;
+    eventObj.healthConcerns = health;
+    for (var i = 0; i <= 5; i++) {
+        eventObj.menuItems[i].dishName = $(`#app${i}`).find('a').html();
+        eventObj.menuItems[i].dishLink = $(`#app${i}`).find('a').attr('href');
+        console.log(eventObj.menuItems[i].dishName + '-' + eventObj.menuItems[i].dishLink);
+    }
+    localStorage.setItem('eventObj', JSON.stringify(eventObj));
+    setEventData();
+    return;
+}
+
 function saveGuestInfo() {
     var email = $('#email').val();
     var name = $('#name').val();
@@ -237,7 +258,7 @@ function renderPreview() {
     console.log('Render Preview');
     var previewContainer = $('#invite')
     guestsList = getGuestsData();
-    console.log ('guestsList - '+guestsList);
+    console.log('guestsList - ' + guestsList);
 
     // Define variables for the different components of the event preview
     var recipient = guestsList.email; //"test@gmail.com";
