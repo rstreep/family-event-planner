@@ -1,44 +1,97 @@
+:root {
+    --color-1: blueviolet; 
+    --color-1-hover: lavender;
+    --color-2: aquamarine;
+    --color-2-hover:azure;
+    --color-3: navy;
+    --light-text-color: ghostwhite;
+    --dark-text-color: navy;
+    --status-btn-bg: ghostwhite; 
+    --status-btn-bg-hover: ghostwhite;
+  }
 
-#map {
-  height: 100vh;
-  width: 100%;
-  position: relative;
-}
-.formSection {
-  max-width: 300px;
-  background-color:aliceblue;
-  border:2px, solid black; 
-  position: absolute;
-  top: 10px;
-  left: 50px;
-  padding: 10px;
-  z-index: 10;
-  box-shadow:0 0 2px black;
-}
-
-.container {
-    border: 2px solid black;
+body {
+    background: linear-gradient(to right, var(--color-1), var(--color-2));
+    color:var(--dark-text-color);
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif; 
 }
 
+h1{
+    color:var(--light-text-color);
+}
+li{
+  list-style-type: none;
+}
+input {
+  margin: 0.5rem auto;
+}
+  .container {
+    margin: 0.5rem auto;
+    max-width: 500px;
+    background: white;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    text-align: center;
+  }
 
-/* Create circles menu */
-.step {
-    height: 15px;
-    width: 15px;
-    margin: 0px 35px;
+  .hidden {
+    display: none;
+  }
+  
+  .tab-status {
+    display: flex;
+    align-items: center;
+  }
+  .tab-status span {
+    height: 20px;
+    width: 20px;
+    margin: 0 20px;
     background-color: #bbbbbb;
     border: none;
     border-radius: 50%;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0.5;
   }
-  
-  /* Mark the active step: */
-.step.active {
-    opacity: 1;
+
+  .pagination {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
-  
-  /* Mark the steps that are finished and valid: */
-  .step.finish {
-    background-color: #04AA6D;
+  .btn {
+    border: 0;
+    background: var(--color-1);
+    min-width: 75px;
+    padding: 10px;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
   }
+  .subBtn {
+    border: 0;
+    background: var(--color-3);
+    min-width: 20px;
+    padding: 5px;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    font-size: x-small;
+  }
+
+  .btn-submit {
+    background: var(--color-2);
+  }
+
+  .btn:hover {
+    background: var(--color-1-hover);
+    transition: ease-in-out .3s all;
+  }
+
+  .btn-submit:hover {
+    background: var(--color-2-hover);
+    transition: ease-in-out .3s all;
+  }
+
