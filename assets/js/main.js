@@ -74,7 +74,11 @@ nextButton.addEventListener('click', (event) => {
     tabPanels[currentStep + 1].classList.remove('hidden')
     tabTargets[currentStep + 1].classList.add('active')
     currentStep += 1
-    if (currentStep === 2) {
+    if (currentStep ===1){
+        saveEventInfo();
+    }
+    else if
+    (currentStep === 2) {
         saveGuestInfo();
     }
     eventWizardLogic(currentStep);
@@ -183,6 +187,17 @@ function init() {
     console.log(eventObj);
 }
 
+function saveEventInfo() {
+    var eventName = $('#eventName').val();
+    var eventDate =$('#eventDate').val();
+    var eventLocation = $('#eventLocation').val();
+    eventObj.eventName = eventName;
+    eventObj.eventDate = eventDate;
+    eventObj.eventLocation = eventLocation;
+    localStorage.setItem('eventObj', JSON.stringify(eventObj));
+    return;
+    }
+    
 function saveGuestInfo() {
     var email = $('#email').val();
     var name = $('#name').val();
