@@ -66,6 +66,7 @@ const tabPanels = document.querySelectorAll('.tabpanel')
 let currentStep = 0
 
 nextButton.addEventListener('click', (event) => {
+    if (currentStep === 3) return;
     event.preventDefault()
     console.log("Next" + currentStep);
     tabPanels[currentStep].classList.add('hidden')
@@ -76,6 +77,7 @@ nextButton.addEventListener('click', (event) => {
     if (currentStep === 2) {
         saveGuestInfo();
     }
+    eventWizardLogic(currentStep);
     return;
 })
 
@@ -88,6 +90,7 @@ previousButton.addEventListener('click', (event) => {
     tabPanels[currentStep - 1].classList.remove('hidden')
     tabTargets[currentStep - 1].classList.add('active')
     currentStep -= 1
+    eventWizardLogic(currentStep);
     return;
 })
 
@@ -98,8 +101,8 @@ directionsButton.addEventListener('click', (event) => {
 
     var url = "https://rstreep.github.io/family-event-planner/map.html?start=" + start + "&destination=" + end;
     if ($('#directionsLink').html()) {
-        console.log ('it is direction link');
-    } else{
+        console.log('it is direction link');
+    } else {
         var directionsLink = $('#directionsLink')
         directionsLink = document.createElement('a');
         directionsLink.setAttribute('id', 'directionsLink');
@@ -114,6 +117,9 @@ directionsButton.addEventListener('click', (event) => {
 });
 
 function init() {
+
+    eventWizardLogic(0);
+
     // guestsList.name = 'rich';
     setGuestsData();
     guestsList = getGuestsData();
@@ -167,6 +173,57 @@ function getEventData() {
     console.log(eventObj);
     return saveData;
 }
+function eventWizardLogic(currentStep) {
+    var stepIcon = $('#' + currentStep);
+    var greyColor = '#bbbbbb';
+    var purpleColor = 'blueviolet';
 
+
+    // //set default values for the class
+    // previousButton.classList.add('hidden');
+    // nextButton.classList.add('hidden');
+    // submitButton.classList.add('hidden');
+
+    // console.log('currentStep- ' + stepIcon.attr('id'))
+    switch (currentStep) {
+        case 0:
+            $('#' + currentStep).css('background-color', purpleColor);
+            $('#' + currentStep).next().css('background-color', greyColor);
+            previousButton.classList.replace('active', 'hidden');
+            nextButton.classList.replace('hidden', 'active');
+            submitButton.classList.replace('active', 'hidden');
+            console.log("Event Details");
+            break;
+        case 1:
+            $('#' + currentStep).css('background-color', purpleColor);
+            $('#' + currentStep).prev().css('background-color', greyColor);
+            $('#' + currentStep).next().css('background-color', greyColor);
+            previousButton.classList.replace('hidden', 'active');
+            nextButton.classList.replace('hidden', 'active');
+            submitButton.classList.replace('active', 'hidden');
+            console.log("Add Guest");
+            break;
+        case 2:
+            $('#' + currentStep).css('background-color', purpleColor);
+            $('#' + currentStep).prev().css('background-color', greyColor);
+            $('#' + currentStep).next().css('background-color', greyColor);
+            previousButton.classList.replace('hidden', 'active');
+            nextButton.classList.replace('hidden', 'active');
+            submitButton.classList.replace('active', 'hidden');
+            console.log("Add Menu");
+            break;
+        case 3:
+            $('#' + currentStep).css('background-color', purpleColor);
+            $('#' + currentStep).prev().css('background-color', greyColor);
+            previousButton.classList.replace('hidden', 'active');
+            nextButton.classList.replace('active', 'hidden');
+            submitButton.classList.replace('hidden', 'active');
+            console.log("Preview");
+            break;
+        default:
+            console.log("Unknown step");
+    }
+
+}
 window.addEventListener("load", init);
 
