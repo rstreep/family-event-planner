@@ -98,33 +98,55 @@ previousButton.addEventListener('click', (event) => {
  */
 submitButton.addEventListener('click', (event) => {
     //event.preventDefault()
-    console.log("MailTo");
-    ///////////////////////////////////////////
-    var event = {
-        name: "Family Reunion",
-        location: "123 Main Street",
-        menu: "BBQ, hamburgers, hotdogs, and salads"
-    };
+    console.log('mailto');
+    // var event = {
+    //     name: "Family Reunion",
+    //     location: "123 Main Street",
+    //     menu: "BBQ, hamburgers, hotdogs, and salads"
+    // };
     // Create an empty array to hold the email addresses
-    var emailList = [];
+    // var emailList = [];
 
     // Loop through the guestsList array and retrieve the email addresses
-    for (var i = 0; i < guestsList.length; i++) {
-        emailList.push(guestsList[i].email);
-    }
+    // for (var i = 0; i < guestsList.length; i++) {
+    //     emailList.push(guestsList[i].email);
+    // }
 
     // Create the email subject
     var subject = "Invitation to " + event.name;
 
-    // Create the email body with the event details
-    var body = "Dear family and friends,\n\nPlease join us for the " + event.name + " at " + event.location + ".\n\nThe menu includes " + event.menu + ".\n\nWe hope to see you there!\n\nBest regards,\nYour Name";
+    //Create the email body with the event details
+    var body = `Dear ${guestsList.name},
+
+    You are cordially invited to our family event, ${event.name}, which will take place at ${eventObj.eventLocation} on ${eventObj.eventDate}. We would love for you to join us for a day of fun and celebration with family and friends. 
+    
+   # Menu:
+    ------------
+    Appetizer:
+    ${eventObj.menuItems[0].dishName}
+    ${eventObj.menuItems[1].dishName}
+    
+    Entree:
+    ${eventObj.menuItems[2].dishName}
+    ${eventObj.menuItems[3].dishName}
+    
+    Dessert:
+    ${eventObj.menuItems[4].dishName}
+    ${eventObj.menuItems[5].dishName}
+    
+    There will be plenty of activities for all ages to enjoy. 
+    
+    We hope you can make it, and we look forward to seeing you there!
+    
+    Best regards,
+    Family Fiesta team!
+    `;
 
     // Create the mailto URL with the email addresses, subject, and body
-    var mailtoUrl = "mailto:" + emailList.join(",") + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    var mailtoUrl = "mailto:" + guestsList.email + "?subject=" + encodeURIComponent(eventObj.eventName) + "&body=" + encodeURIComponent(body);
 
-    // // Open the mailto dialog box
+    // Open the mailto dialog box
     window.location.href = mailtoUrl;
-    //////////////////////////////////////////
     return;
 })
 
@@ -209,7 +231,7 @@ function getEventData() {
 }
 function renderPreview() {
     console.log('Render Preview');
-    var previewContainer = $('#invite')  
+    var previewContainer = $('#invite')
     guestsList = getGuestsData();
     // console.log ('guestsList - '+guestsList);
 
