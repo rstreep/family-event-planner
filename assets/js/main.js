@@ -199,6 +199,7 @@ function renderPreview() {
     var recipient = guestsList.email; //"test@gmail.com";
     var eventName = eventObj.eventName;//"Family Event";
     var location = eventObj.eventLocation; //"123 Main St.";
+    var direction = guestsList.link;
     var date = eventObj.eventDate; //"June 1st, 2023";
     var menu = "BBQ, hamburgers, hot dogs, and sides";
     var name = guestsList.name;//"John Doe";
@@ -207,7 +208,7 @@ function renderPreview() {
             Dear <strong>${name}</strong>,
             <br><br>
             You are cordially invited to our family event, <strong>${eventName}</strong>, 
-            which will take place at <strong>${location}</strong> on <strong>${date}</strong>. 
+            which will take place at <strong><a href="${direction}">${location}</a></strong> on <strong>${date}</strong>. 
             We would love for you to join us for a day of fun and celebration with family and friends. 
             <br><br>
             We will be serving a delicious menu, including:
