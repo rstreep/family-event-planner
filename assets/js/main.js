@@ -2,7 +2,7 @@
 // /**
 //  * the section below describes the global Variables
 //  */
-let guestsObj = {};
+let guestsList = {};
 let eventObj = {};
 
 /**
@@ -12,14 +12,14 @@ let eventObj = {};
  *  - name (string), guest's Firs and Last name
  *  - email (string), guest's email adress
  */
-guestsList =
-{
-    salutaion: "Mr.",
-    name: "John Smith",
-    email: "johnsmith@email.com",
-    address: "New York",
-    link: "link"
-};
+// guestsList =
+// {
+//     salutaion: "Mr.",
+//     name: "John Smith",
+//     email: "johnsmith@email.com",
+//     address: "New York",
+//     link: "link"
+// };
 
 eventObj = {
     eventName: "Family Reunion",
@@ -67,13 +67,13 @@ let currentStep = 0
 
 nextButton.addEventListener('click', (event) => {
     event.preventDefault()
-    console.log("Next"+currentStep);
+    console.log("Next" + currentStep);
     tabPanels[currentStep].classList.add('hidden')
     tabTargets[currentStep].classList.remove('active')
-        tabPanels[currentStep + 1].classList.remove('hidden')
-        tabTargets[currentStep + 1].classList.add('active')
+    tabPanels[currentStep + 1].classList.remove('hidden')
+    tabTargets[currentStep + 1].classList.add('active')
     currentStep += 1
-    if (currentStep===2){
+    if (currentStep === 2) {
         saveGuestInfo();
     }
     return;
@@ -82,7 +82,7 @@ nextButton.addEventListener('click', (event) => {
 previousButton.addEventListener('click', (event) => {
     if (currentStep === 0) return;
     event.preventDefault()
-    console.log("Previous"+currentStep);
+    console.log("Previous" + currentStep);
     tabPanels[currentStep].classList.add('hidden')
     tabTargets[currentStep].classList.remove('active')
     tabPanels[currentStep - 1].classList.remove('hidden')
@@ -92,20 +92,24 @@ previousButton.addEventListener('click', (event) => {
 })
 
 directionsButton.addEventListener('click', (event) => {
-    console.log('working');
     event.preventDefault();
-    var start= $('#address').val();
-    var end= $('#eventLocation').val(); 
-    var url = "https://rstreep.github.io/family-event-planner/map.html?start=" + start + "&destination=" + end;
-    var directionsLink = document.createElement('a');
-    directionsLink.setAttribute('href', url);
-    directionsLink.setAttribute('id', 'directionsLink');
-    directionsLink.textContent = "directions";
+    var start = $('#address').val();
+    var end = $('#eventLocation').val();
 
-    guestsList.directionsLink = url;
-    console.log(directionsLink)
-    document.getElementById('guests').appendChild(directionsLink);
-    // guestsList.link = $('#directionsLink').attr('href');
+    var url = "https://rstreep.github.io/family-event-planner/map.html?start=" + start + "&destination=" + end;
+    if ($('#directionsLink').html()) {
+        console.log ('it is direction link');
+    } else{
+        var directionsLink = $('#directionsLink')
+        directionsLink = document.createElement('a');
+        directionsLink.setAttribute('id', 'directionsLink');
+        directionsLink.textContent = "directions";
+
+        guestsList.directionsLink = url;
+        console.log(directionsLink)
+        document.getElementById('guests').appendChild(directionsLink);
+    }
+    directionsLink.setAttribute('href', url);
     return;
 });
 
@@ -118,10 +122,10 @@ function init() {
 
     console.log(eventObj);
 }
-function saveGuestInfo(){
+function saveGuestInfo() {
     var email = $('#email').val();
     var name = $('#name').val();
-    var address =  $('#address').val();
+    var address = $('#address').val();
     var directionLink = $('#directionsLink').attr('href');
     guestsList.name = name;
     guestsList.email = email;
