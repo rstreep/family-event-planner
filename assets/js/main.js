@@ -29,28 +29,28 @@ eventObj = {
     healthConcerns: 'peanut-free',
     menuItems: [
         {
-            dishType: "Appetizer 1",
+            // dishType: "Appetizer 1",
             dishName: "shrimp cocktail",
             dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
 
         }, {
-            dishType: "Appetizer 2",
+            // dishType: "Appetizer 2",
             dishName: "shrimp cocktail",
             dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
         }, {
-            dishType: "Main Dish",
+            // dishType: "Main Dish",
             dishName: "shrimp cocktail",
             dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
         }, {
-            dishType: "Side 1",
+            // dishType: "Side 1",
             dishName: "shrimp cocktail",
             dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
         }, {
-            dishType: "Side 2",
+            // dishType: "Side 2",
             dishName: "shrimp cocktail",
             dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
         }, {
-            dishType: "Dessert",
+            // dishType: "Dessert",
             dishName: "shrimp cocktail",
             dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
         }]
@@ -191,6 +191,9 @@ function renderPreview() {
 //     dietReswtrictions: 'vegan',
 //     healthConcerns: 'peanut-free',
 //     menuItems: [
+    // dishType: "Appetizer 1",
+    // dishName: "shrimp cocktail",
+    // dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',    
 
     guestsList = getGuestsData();
     console.log ('guestsList - '+guestsList);
@@ -201,7 +204,7 @@ function renderPreview() {
     var location = eventObj.eventLocation; //"123 Main St.";
     var direction = guestsList.link;
     var date = eventObj.eventDate; //"June 1st, 2023";
-    var menu = "BBQ, hamburgers, hot dogs, and sides";
+    var menu = eventObj.menuItems//"BBQ, hamburgers, hot dogs, and sides";
     var name = guestsList.name;//"John Doe";
     var emailBody = `
           <p>
@@ -211,10 +214,18 @@ function renderPreview() {
             which will take place at <strong><a href="${direction}">${location}</a></strong> on <strong>${date}</strong>. 
             We would love for you to join us for a day of fun and celebration with family and friends. 
             <br><br>
-            We will be serving a delicious menu, including:
-            <br><br>
-             <strong>${menu}</strong>, 
-             <br><br>
+            We will be serving a delicious <strong>Menu</strong>, including:
+            <hr>
+            <strong>Appetizer<strong>
+            <br> <em><a href="${eventObj.menuItems[0].dishLink}">${eventObj.menuItems[0].dishName}</a></em><br>
+            <em><a href="${eventObj.menuItems[1].dishLink}">${eventObj.menuItems[1].dishName}</a></em><br><br>
+            <strong>Entree</strong>
+            <br> <em><a href="${eventObj.menuItems[2].dishLink}">${eventObj.menuItems[2].dishName}</a></em><br>
+            <em><a href="${eventObj.menuItems[3].dishLink}">${eventObj.menuItems[3].dishName}</a></em><br><br>
+            <strong>Dessert<strong>
+            <br> <em><a href="${eventObj.menuItems[4].dishLink}">${eventObj.menuItems[4].dishName}</a></em><br>
+            <em><a href="${eventObj.menuItems[5].dishLink}">${eventObj.menuItems[5].dishName}</a></em><br><br>
+            <hr>
             There will be plenty of activities for all ages to enjoy. 
             <br><br>
             We hope you can make it, and we look forward to seeing you there!
