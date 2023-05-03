@@ -5,32 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Family Fiesta</title>
-    <link rel="stylesheet" href="./assets/css/style2.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body style="border:0;margin:20px">
-    <h1>Welcome to Family Fiesta!</h1>
+    <h1 style="text-align: center;">Welcome to Family Fiesta!</h1>
     <div class="container">
     <div class="tab-status">
-        <span class="tab active">1</span>
-        <span class="tab">2</span>
-        <span class="tab">3</span>
-        <span class="tab">4</span>
+        <span id = '0'class="tab active">1</span>
+        <span id = '1'class="tab">2</span>
+        <span id = '2' class="tab">3</span>
+        <span id = '3' class="tab">4</span>
     </div>
     <form class="eventPlanner" action="#">
         <div role="tab-list">
         <div role="tabpanel" class="tabpanel" id="event" >
             <h3>Create Event</h3>
-            <input class="name" placeholder="event name..." oninput="this.className = ''">
-            <input class="date" placeholder="time..." oninput="this.className = ''">
-            <input class="location" placeholder="location..." oninput="this.className = ''">
+            <input id="eventName"class="name" placeholder="event name..." oninput="this.className = ''">
+            <input id="eventDate" class="date" placeholder="time..." oninput="this.className = ''">
+            <input id="eventLocation" class="location" placeholder="location..." oninput="this.className = ''">
         </div>
         <div role="tabpanel" class="tabpanel hidden" id="guests"> 
             <h3>Add Guests</h3>
             <div class="guestData">
+<<<<<<< HEAD
             <input type="name" id="name" placeholder="guest name..." oninput="this.className = ''">
             <input type="email" id="email" placeholder="guest@email.com" oninput="this.className = ''">
             <input type="address" class="address" placeholder="address" oninput="this.className = ''">
+=======
+            <input id="name" type="name" class="name" placeholder="guest name..." oninput="this.className = ''">
+            <input id="email" class="email" placeholder="guest@email.com" oninput="this.className = ''">
+            <input id="address" type="address" class="address" placeholder="address" oninput="this.className = ''">
+>>>>>>> 40bb9ff6d42e5d7797e0f2652ad9d5e4760f7be7
             <button class="subBtn" id="getDirections">get directions</button>
             <button class="subBtn" id="addGuest">add guest</button>
      
@@ -83,16 +89,46 @@
             </div>
             </div>
         <div role="tabpanel" class="tabpanel hidden" id="invite">
-            <h3>Invite Guests</h3>
+            <h3>Preview the Invitation Email</h3>
+            <!-- <div id='event-preview'class="container">
+
+                <div class="container" style="border: 2px solid violet;">
+                    <h4>MailTo: test@gmail.com</h4>
+                </div>
+                <div class="container" style="border: 2px solid violet;">
+                    <h4>Subject: Invitation for family event</h4>
+                </div>
+                <div class="container" style="border: 2px solid violet;">
+                    <h4>Email</h4>
+                    <p>
+                        Dear <strong>{name}</strong>,
+                        <br><br>
+                        You are cordially invited to our family event, <strong>{event name}</strong>, 
+                        which will take place at <strong>{location}</strong> on <strong>{date}</strong>. 
+                        We would love for you to join us for a day of fun and celebration with family and friends. 
+                        <br><br>
+                        We will be serving a delicious menu, including <strong>{menu}</strong>, 
+                        and there will be plenty of activities for all ages to enjoy. 
+                        <br><br>
+                        We hope you can make it, and we look forward to seeing you there!
+                        <br><br>
+                        Best regards,
+                        <br>
+                       Family Fiesta team!
+                      </p>
+                </div>
+            </div> -->
+ 
         </div>
     </div>
         <div class="pagination">
-            <button class="btn" id="prev">Previous</button>
-            <button class="btn" id="next">Continue</button>
-            <button class="btn btn-submit" id="submit">Submit</button>
+            <button class="btn hidden" id="prev">Previous</button>
+            <button class="btn hidden" id="next">Continue</button>
+            <button class="btn hidden btn-submit" id="submit">Send</button>
     </form>
     </div>
   <script src="./assets/js/main.js"></script>
   <script src="./assets/js/menu.js"></script>
+  <script src="./assets/js/mailto.js"></script>
 </body>
 </html>

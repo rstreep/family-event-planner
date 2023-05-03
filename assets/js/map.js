@@ -78,5 +78,5 @@ setTimeout(function(){
     var destination = urlParams.get("destination");
     $("#start").val(start);
     $("#destination").val(destination);
-    $("#directions").click();
+    $("#directions").click();   //how to add it in the separate window? -   window.open(url, '_blank');
 },500)
