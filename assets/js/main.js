@@ -5,8 +5,8 @@
 // /**
 //  * the section below describes the global Variables
 //  */
-let guestsObj = [];
-let eventObg = {};
+let guestsObj = {};
+let eventObj = {};
 
 /**
  * The section below defines the contract for API integration
@@ -24,7 +24,7 @@ guestsList =
         link: ""
     };
    
-eventObg = {
+eventObj = {
     eventName: "Family Reunion",
     eventDate: "Thu May 4th, 2023, 7pm est",
     eventLocation: "The Franklin Institute, Center City, Address: 222 N 20th Street, Philadelphia, PA 19103",
@@ -112,6 +112,51 @@ directionsButton.addEventListener('click', (event) => {
     document.getElementById('guests').appendChild(directionsLink);
   });
 
+function init() {
+    // guestsList.name = 'rich';
+    setGuestsData();
+    guestsList = getGuestsData();
+    setEventData();
+    eventObj = getEventData();
+
+    console.log(eventObj);
+}
+
+function getGuestsData() {
+    var saveData = JSON.parse(localStorage.getItem('guestsList'));
+    if(saveData.length > 0) {
+        localStorage.getItem('guestsList', JSON.parse(guestsList));
+    };
+    console.log(guestsList);
+    return saveData;
+}
+
+function setGuestsData() {
+    // localStorage.setItem('guestsList', JSON.stringify(guestsList));
+    if(guestsList.length > 0) {
+        localStorage.setItem('guestsList', JSON.stringify(guestsList));
+    }
+    console.log(guestsList);
+}
+
+function setEventData() {
+    if(eventObj) {
+        localStorage.setItem('eventObj', JSON.stringify(eventObj));
+    }
+    console.log(eventObj);
+}
+
+function getEventData() {
+    var saveData = JSON.parse(localStorage.getItem('eventObj'));
+    if(saveData.length > 0) {
+        localStorage.getItem('eventObj', JSON.parse(eventObj));
+    };
+    console.log(eventObj);
+    return saveData;
+}
+
+window.addEventListener("load", init);
+
 
 /**
  * This function navigates to the main page to continue edining by selecting Back button
@@ -198,16 +243,3 @@ function sendClicked() {
     $('#sendBtn').click(function () {
         sendClicked();
     });
-
-
-// fetch function to grab data from edamam API
-// Rich API ID - e0e48aa8
-// Rich API Key - 5ecc0a6a74140b8afe687fc73be0ddb2	—
-
-// fetch('insert api here')
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//     })
