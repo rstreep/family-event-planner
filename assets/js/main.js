@@ -21,40 +21,40 @@ let eventObj = {};
 //     link: "link"
 // };
 
-eventObj = {
-    eventName: "Family Reunion",
-    eventDate: "Thu May 4th, 2023, 7pm est",
-    eventLocation: "The Franklin Institute, Center City, Address: 222 N 20th Street, Philadelphia, PA 19103",
-    dietRestrictions: 'vegan',
-    healthConcerns: 'peanut-free',
-    menuItems: [
-        {
-            // dishType: "Appetizer 1",
-            dishName: "shrimp cocktail",
-            dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
+// eventObj = {
+//     eventName: "Family Reunion",
+//     eventDate: "Thu May 4th, 2023, 7pm est",
+//     eventLocation: "The Franklin Institute, Center City, Address: 222 N 20th Street, Philadelphia, PA 19103",
+//     dietRestrictions: 'vegan',
+//     healthConcerns: 'peanut-free',
+//     menuItems: [
+//         {
+//             // dishType: "Appetizer 1",
+//             dishName: "shrimp cocktail",
+//             dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
 
-        }, {
-            // dishType: "Appetizer 2",
-            dishName: "shrimp cocktail",
-            dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
-        }, {
-            // dishType: "Main Dish",
-            dishName: "shrimp cocktail",
-            dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
-        }, {
-            // dishType: "Side 1",
-            dishName: "shrimp cocktail",
-            dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
-        }, {
-            // dishType: "Side 2",
-            dishName: "shrimp cocktail",
-            dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
-        }, {
-            // dishType: "Dessert",
-            dishName: "shrimp cocktail",
-            dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
-        }]
-}
+//         }, {
+//             // dishType: "Appetizer 2",
+//             dishName: "shrimp cocktail",
+//             dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
+//         }, {
+//             // dishType: "Main Dish",
+//             dishName: "shrimp cocktail",
+//             dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
+//         }, {
+//             // dishType: "Side 1",
+//             dishName: "shrimp cocktail",
+//             dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
+//         }, {
+//             // dishType: "Side 2",
+//             dishName: "shrimp cocktail",
+//             dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
+//         }, {
+//             // dishType: "Dessert",
+//             dishName: "shrimp cocktail",
+//             dishLink: 'http://127.0.0.1:5500/index.html?diets=low-carb&health-concerns=vegetarian#:~:text=Appetizer-,Oven%20Scrambled%20Eggs,-Smokey%20Deviled%20Eggs',
+//         }]
+// }
 
 var directionsButton = document.querySelector('#getDirections');
 const previousButton = document.querySelector('#prev')
@@ -74,13 +74,17 @@ nextButton.addEventListener('click', (event) => {
     tabPanels[currentStep + 1].classList.remove('hidden')
     tabTargets[currentStep + 1].classList.add('active')
     currentStep += 1
-    if (currentStep ===1){
+    if (currentStep === 1) {
         saveEventInfo();
     }
-    else if
-    (currentStep === 2) {
+    else if (currentStep === 2) {
         saveGuestInfo();
     }
+    else if (currentStep === 3) {
+        console.log(currentStep);
+        saveMenu();
+    }
+    
     eventWizardLogic(currentStep);
     return;
 })
@@ -189,15 +193,15 @@ function init() {
 
 function saveEventInfo() {
     var eventName = $('#eventName').val();
-    var eventDate =$('#eventDate').val();
+    var eventDate = $('#eventDate').val();
     var eventLocation = $('#eventLocation').val();
     eventObj.eventName = eventName;
     eventObj.eventDate = eventDate;
     eventObj.eventLocation = eventLocation;
     localStorage.setItem('eventObj', JSON.stringify(eventObj));
     return;
-    }
-    
+}
+
 function saveGuestInfo() {
     var email = $('#email').val();
     var name = $('#name').val();
@@ -211,6 +215,34 @@ function saveGuestInfo() {
     setGuestsData();
     return;
 }
+
+function saveMenu() {
+    var diet = $('#diets').val();
+    var health = $('#health-concerns').val();
+    var appetizer1 = $('#app1').val();
+    var appetizer2 = $('#app2').val();
+    var entree1 = $('#ent1').val();
+    var entree2 = $('#ent2').val();
+    var dessert1 = $('#des1').val();
+    var dessert2 = $('#des2').val();
+    eventObj.dietRestrictions = diet;
+    eventObj.healthConcerns = health;
+    eventObj.menuItems[0].dishName = $(`#app1`).find('a').html();
+    eventObj.menuItems[0].dishLink = $(`#app1`).find('a').attr('href');
+    eventObj.menuItems[1].dishName = $(`#app2`).find('a').html();
+    eventObj.menuItems[1].dishLink = $(`#app2`).find('a').attr('href');
+    eventObj.menuItems[2].dishName = $(`#ent1`).find('a').html();
+    eventObj.menuItems[2].dishLink = $(`#ent1`).find('a').attr('href');
+    eventObj.menuItems[3].dishName = $(`#ent2`).find('a').html();
+    eventObj.menuItems[3].dishLink = $(`#ent2`).find('a').attr('href');
+    eventObj.menuItems[4].dishName = $(`#des1`).find('a').html();
+    eventObj.menuItems[4].dishLink = $(`#des1`).find('a').attr('href');
+    eventObj.menuItems[5].dishName = $(`#des2`).find('a').html();
+    eventObj.menuItems[5].dishLink = $(`#des2`).find('a').attr('href');
+    localStorage.setItem('eventObj', JSON.stringify(eventObj));
+    return;
+}
+
 function getGuestsData() {
     var saveData = JSON.parse(localStorage.getItem('guestsList'));
     // if (saveData) {
@@ -251,7 +283,7 @@ function renderPreview() {
     console.log('Render Preview');
     var previewContainer = $('#invite')
     guestsList = getGuestsData();
-    console.log ('guestsList - '+guestsList);
+    console.log('guestsList - ' + guestsList);
 
     // Define variables for the different components of the event preview
     var recipient = guestsList.email; //"test@gmail.com";
