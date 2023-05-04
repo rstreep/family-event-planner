@@ -1,5 +1,7 @@
 # Family-event-planner
-Organizing an event for family can be fun but is often overwhelming and stressful. Whether it’s figuring out the menu, making accommodations, or navigating the family group chat family planning should be simpler. Well now there’s a tool to accomplish exactly that and it's called Family Fiesta! Family Fiesta’s goal is simple; provide a tool that is intuitive and easy to use to help make life easier for the member of the family that loves to organize family gatherings but wants to avoid all the unnecessary hassle. Upon startup the organizer will be met with criteria they must fill out to get the party started like guest info, location, food, and a menu. After selecting the details for the gathering, the organizer can send out the invites/rsvp to the guests via email. Use Family Fiesta today!
+Organizing an event for family can be fun but is often overwhelming and stressful. Whether it’s figuring out the menu, making accommodations, or navigating the family group chat family planning should be simpler. Well now there’s a tool to accomplish exactly that and it's called Family Fiesta! Family Fiesta’s goal is simple: provide a tool that is intuitive and easy to use to make life easier for the member of the family who loves organizing family gatherings but wants to avoid all the unnecessary hassle. 
+
+Upon startup the organizer will be met with criteria they must fill out to get the party started like guest info, location, food, and a menu. After selecting the details for the gathering, the organizer can send out the invites/rsvp to the guests via email. Use Family Fiesta today!
 
 ## User Story
 ```
@@ -23,10 +25,10 @@ THEN I should be able to view a summary of the event details, including event na
 ```
 
 ## Installation
-Famil Fiesta can be accessed through the URL: https://rstreep.github.io/family-event-planner/ which is deployed from the main branch in GitHub.
+Family Fiesta can be accessed through the URL: https://rstreep.github.io/family-event-planner/ which is deployed from the main branch in GitHub.
 
 ## Usage
-![Getting Started](./assets/img/event-page.png)
+![End to End](./assets/img/endtoend.gif)
 
 ## License
 MIT License
