@@ -31,7 +31,7 @@ var genBtn = document.querySelector('#generate');
 
 genBtn.onclick = function () {
     var userSearch = document.querySelector('#userSearch').value;
-    console.log(userSearch);
+    // console.log(userSearch);
     event.preventDefault();
     var dietEl = document.querySelector('#diets').value;
     var healthEl = document.querySelector('#health-concerns').value;
@@ -46,8 +46,8 @@ genBtn.onclick = function () {
                 return `<a href="${food.recipe.url}">${food.recipe.label}</a>`;
             }
             );
-            console.log(menu[0]);
-            console.log(menu[1]);
+            // console.log(menu[0]);
+            // console.log(menu[1]);
             // adds response to html at designated tags
             document.querySelector('#app1').insertAdjacentHTML("afterbegin", menu[0]);
             document.querySelector('#app2').insertAdjacentHTML("afterbegin", menu[1]);
@@ -62,8 +62,8 @@ genBtn.onclick = function () {
                 return `<a href="${food.recipe.url}">${food.recipe.label}</a>`;
             }
             );
-            console.log(menu[0]);
-            console.log(menu[1]);
+            // console.log(menu[0]);
+            // console.log(menu[1]);
             // adds response to html at designated tags
             document.querySelector('#ent1').insertAdjacentHTML("afterbegin", menu[0]);
             document.querySelector('#ent2').insertAdjacentHTML("afterbegin", menu[1]);
@@ -78,8 +78,8 @@ genBtn.onclick = function () {
                 return `<a href="${food.recipe.url}">${food.recipe.label}</a>`;
             }
             );
-            console.log(menu[0]);
-            console.log(menu[1]);
+            // console.log(menu[0]);
+            // console.log(menu[1]);
             // adds response to html at designated tags
             document.querySelector('#des1').insertAdjacentHTML("afterbegin", menu[0]);
             document.querySelector('#des2').insertAdjacentHTML("afterbegin", menu[1]);
