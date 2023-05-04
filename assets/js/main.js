@@ -168,6 +168,7 @@ directionsButton.addEventListener('click', (event) => {
         var directionsLink = $('#directionsLink')
         directionsLink = document.createElement('a');
         directionsLink.setAttribute('id', 'directionsLink');
+        directionsLink.setAttribute('target', '_blank');
         directionsLink.textContent = "directions";
 
         guestsList.link = url;
