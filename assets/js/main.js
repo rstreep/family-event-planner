@@ -104,7 +104,7 @@ previousButton.addEventListener('click', (event) => {
  * This function opens mailTo dialog with thedefined data by clicking Send button 
  */
 submitButton.addEventListener('click', (event) => {
-    //event.preventDefault()
+    event.preventDefault()
     console.log('mailto');
     // var event = {
     //     name: "Family Reunion",
@@ -248,7 +248,7 @@ function getGuestsData() {
      if (saveData) {
         localStorage.getItem('guestsList', JSON.parse(guestsList));
     };
-    console.log(guestsList);
+    // console.log(guestsList);
     return saveData;
 }
 
@@ -263,7 +263,7 @@ function setGuestsData() {
 function setEventData() {
     console.log('setEventData0');
     if (eventObj) {
-        console.log('setEventData1');
+        // console.log('setEventData1');
         localStorage.setItem('eventObj', JSON.stringify(eventObj));
     }
     console.log('savedObject' + eventObj);
@@ -276,7 +276,7 @@ function getEventData() {
          console.log('getEventData1');
         localStorage.getItem('eventObj', JSON.parse(eventObj));
     };
-    console.log('getData' + eventObj);
+    // console.log('getData' + eventObj);
     return saveData;
 }
 function renderPreview() {
