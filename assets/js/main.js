@@ -194,7 +194,7 @@ function saveGuestInfo() {
     guestsList.address = address;
     guestsList.link = directionLink;
     localStorage.setItem("guestsList", JSON.stringify(guestsList));
-    setGuestsData();
+    // setGuestsData();
     return;
 }
 function getGuestsData() {
